@@ -21,6 +21,18 @@ function setup() {
     y = height / 2;
     fill("red");
     setMoveThreshold(0.05);
+    if (DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === 'function') {
+        DeviceMotionEvent.requestPermission()
+            .then(permissionState => {
+                if (permissionState === 'granted') {
+                    window.addEventListener('devicemotion', deviceMoved);
+                }
+            })
+            .catch(console.error);
+    } else {
+        // Androidやパーミッションが不要なブラウザ用
+        window.addEventListener('devicemotion', deviceMoved);
+    }
 }
 
 function draw() {
