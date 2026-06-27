@@ -95,6 +95,12 @@ function draw() {
     ellipse(mouseX, mouseY, 10, 10);*/
 }
 
+let count = 0;
+
+function deviceShaken() {
+    count++;
+    document.getElementById('count').innerText = count + ''
+}
 function deviceMoved() {
     x += rotationX;
     y += rotationY;
